@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <title>BMI Calculator</title>
+    </head>
+    <body>
+        <h1>BMI Calculator</h1>
+        <p>Weight (kg):</p><input type="number" step=0.01 id="weight"><br>
+        <p>Height :</p><input type="number" step=0.01 id="height">
+        <select id="hunit">
+            <option>m</option>
+            <option>cm</option>
+        </select> <br>
+		<button onclick="calculateBMI()">Calculate</button>  
+        <p id="result"></p>                                                             
+    </body>
+    <script>
+        function calculateBMI()
+        {
+            var weight = document.getElementById("weight").value;
+            var height = document.getElementById("height").value;
+            var hunit = document.getElementById("hunit").value;
+            if(hunit=="cm")
+            {
+                height = height / 100;
+            }
+            var bmi = weight / Math.pow(height, 2);
+            var category = "";
+            if(bmi<=18.5)
+            {
+                category = "Underweight";
+            }
+            else if(bmi<=24.9)
+            {
+                category = "Normal Weight";
+            }
+            else if(bmi<=29.9)
+            {
+                category = "Overweight";
+            }
+            else if(bmi>29.9)
+            {
+                category = "Obesity";
+            }
+            else
+            {
+                category = "Undefined";
+            }
+
+            var result = document.getElementById("result");
+            result.innerHTML = "<pre>BMI = "+String(bmi)+"             Category = "+category+"</pre>";
+        }
+    </script>
+    <style>
+        body
+        {
+            text-align: center;
+        }
+        h1
+        {
+            background-color: azure;
+            padding: 10px;
+            box-shadow: 1px 2px 5px black;
+            text-shadow: 1px 1px 2px black;
+            color: red;
+        }
+        p
+        {
+            width: 100%;
+            background-color: red;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            font-size: x-large;
+            text-shadow: 1px 1px 2px black;
+            box-shadow: 1px 2px 5px black;
+        }
+        input
+        {
+            padding: 7px;
+            width: 250px;
+            border-radius: 0;
+            border-width: 1;
+            border-color: red;
+            box-shadow: 1px 1px 2px  black;
+        }
+        select
+        {
+            padding: 7;
+            border: none;
+            background-color: red;
+            color: white;
+            box-shadow: 1px 1px 2px  black;
+        }
+        button
+        {
+            margin: 50px;
+            border: none;
+            background-color: azure;
+            font-weight: bold;
+            font-size: larger;
+            padding: 10px;
+            width: 200px;
+            box-shadow: 1px 1px 5px  red;
+            transition: all ease 0.5s;
+            cursor: pointer;
+        }
+        button:hover
+        {
+            width: 250px;
+            border-radius: 2px;
+        }
+    </style>
+</html>

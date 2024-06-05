@@ -1,0 +1,235 @@
+<html>
+    <head>
+        <title>LA8</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/13.0.0/math.js" integrity="sha512-YwFcgvV5CtE1kAnYDaIfoeydQnjRd/9YvYvi4MtRuFGAYVilHTD8qvvHrI/IJ7umguCooEUfctGo/9EKqdd1OA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            var expr='',result=0;
+            var history = {};
+            function b1()
+            {
+                expr=expr+'1';
+                document.getElementById("display").value=expr;
+            }
+            function b2()
+            {
+                expr=expr+'2';
+                document.getElementById("display").value=expr;
+            }
+            function b3()
+            {
+                expr=expr+'3';
+                document.getElementById("display").value=expr;
+            }
+            function b4()
+            {
+                expr=expr+'4';
+                document.getElementById("display").value=expr;
+            }
+            function b5()
+            {
+                expr=expr+'5';
+                document.getElementById("display").value=expr;
+            }
+            function b6()
+            {
+                expr=expr+'6';
+                document.getElementById("display").value=expr;
+            }
+            function b7()
+            {
+                expr=expr+'7';
+                document.getElementById("display").value=expr;
+            }
+            function b8()
+            {
+                expr=expr+'8';
+                document.getElementById("display").value=expr;
+            }
+            function b9()
+            {
+                expr=expr+'9';
+                document.getElementById("display").value=expr;
+            }
+            function b0()
+            {
+                expr=expr+'0';
+                document.getElementById("display").value=expr;
+            }
+            function bplus()
+            {
+                expr=expr+'+';
+                document.getElementById("display").value=expr;
+            }
+            function bminus()
+            {
+                expr=expr+'-';
+                document.getElementById("display").value=expr;
+            }
+            function bdiv()
+            {
+                expr=expr+'/';
+                document.getElementById("display").value=expr;
+            }
+            function bmul()
+            {
+                expr=expr+'*';
+                document.getElementById("display").value=expr;
+            }
+            function bpo()
+            {
+                expr=expr+'(';
+                document.getElementById("display").value=expr;
+            }
+            function bpc()
+            {
+                expr=expr+')';
+                document.getElementById("display").value=expr;
+            }
+            function bpow()
+            {
+                expr=expr+'^';
+                document.getElementById("display").value=expr;
+            }
+            function sindeg()
+            {
+                expr=expr+'sin( deg)';
+                document.getElementById("display").value=expr;
+            }
+            function cosecdeg()
+            {
+                expr=expr+'csc( deg)';
+                document.getElementById("display").value=expr;
+            }
+            function cosdeg()
+            {
+                expr=expr+'cos( deg)';
+                document.getElementById("display").value=expr;
+            }
+            function secdeg()
+            {
+                expr=expr+'sec( deg)';
+                document.getElementById("display").value=expr;
+            }
+            function tandeg()
+            {
+                expr=expr+'tan( deg)';
+                document.getElementById("display").value=expr;
+            }
+            function cotdeg()
+            {
+                expr=expr+'cot( deg)';
+                document.getElementById("display").value=expr;
+            }
+            function beq()
+            {
+                expr=document.getElementById("display").value;
+                result=math.evaluate(expr);
+                history[expr]=result;
+                updatehistory(history);
+                document.getElementById("display").value=result;
+                expr=""
+            }
+            document.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                        beq();
+                    }
+                });
+            function updatehistory(history)
+            {
+                const historytable = document.getElementById('history');
+                historytable.innerHTML="";
+                Object.keys(history).reverse().forEach(expr => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = "<td>"+expr+"</td>"+"<td> = "+history[expr]+"</td>";
+                    historytable.appendChild(tr);
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <center>
+            <table id="calculator">
+                <tr>
+                    <td colspan="7"><input id="display" type="text"></td>
+                </tr>
+                <tr>
+                    <td><button onclick="b1()">1</button></td>
+                    <td><button onclick="b2()">2</button></td>
+                    <td><button onclick="b3()">3</button></td>
+                    <td><button onclick="bplus()">+</button></td>
+                    <td><button onclick="bminus()">-</button></td>
+                    <td><button onclick="sindeg()">sin()</button></td>
+                    <td><button onclick="cosecdeg()">cosec()</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="b4()">4</button></td>
+                    <td><button onclick="b5()">5</button></td>
+                    <td><button onclick="b6()">6</button></td>
+                    <td><button onclick="bdiv()">/</button></td>
+                    <td><button onclick="bmul()">*</button></td>
+                    <td><button onclick="cosdeg()">cos()</button></td>
+                    <td><button onclick="secdeg()">sec()</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="b7()">7</button></td>
+                    <td><button onclick="b8()">8</button></td>
+                    <td><button onclick="b9()">9</button></td>
+                    <td><button onclick="bpo()">(</button></td>
+                    <td><button onclick="bpc()">)</button></td>
+                    <td><button onclick="tandeg()">tan()</button></td>
+                    <td><button onclick="cotdeg()">cot()</button></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button onclick="b0()">0</button></td>
+                    <td></td>
+                    <td colspan="2"><button onclick="bpow()">^</button></td>
+                    <td colspan="2"><button id="eq" onclick="beq()">=</button></td>
+                </tr>
+            </table>
+            <table id="history"></table>
+        </center>
+    </body>
+    <style>
+        #calculator
+        {
+            background-color: azure;
+            padding: 10px;
+            margin: 50px;
+            box-shadow: 1px 2px 5px black;
+            border-radius: 5px;
+        }
+        #calculator td
+        {
+            text-align: center;
+        }
+        #calculator input
+        {
+            width: 450px;
+            height: 40px;
+            box-shadow: 1px 2px 2px black;
+            font-size: large;
+        }
+        #calculator button
+        {
+            width: 60px;
+            padding: 5px;
+            height: 40px;
+            box-shadow: 1px 2px 2px black;
+            font-weight: bold;
+            background-color: aqua;
+            border-radius: 2px;
+        }
+        #history
+        {
+            background-color: azure;
+            width: 400px;
+            padding: 10px;
+            box-shadow: 1px 2px 5px black;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: large;
+            text-align: center;
+        }
+    </style>
+</html>

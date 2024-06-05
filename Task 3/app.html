@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <title>Task Manager</title>
+    </head>
+    <body>
+        <h1>Task Manager</h1>
+        <p>Task Name :</p><input type="text" id="taskName">
+        <button id="addTaskButton" onclick="addTask()">Add Task</button>
+
+        <center><table id='task-list'></table></center>
+        
+    </body>
+    <script>
+        var taskNo = 0;
+        function addTask()
+        {
+            const tasklist = document.getElementById('task-list');
+            var taskName = document.getElementById('taskName').value;
+            taskNo += 1;
+            const taskrow = document.createElement('tr');
+            taskrow.id = String(taskNo);
+            taskrow.innerHTML = 
+            '<td id="t'+String(taskNo)+'">'+taskName+'</td>'+
+            '<td>Processing</td>'+
+            '<td><button onclick="completeTask('+String(taskNo)+')">Complete Task</button></td>'+
+            '<td><button onclick="removeTask('+String(taskNo)+')">Remove Task</button></td>';
+            tasklist.appendChild(taskrow);
+        }
+        function completeTask(n)
+        {
+            const taskrow = document.getElementById(n);
+            const taskName = document.getElementById('t'+String(n)).innerText;
+            taskrow.innerHTML =
+            '<td id="t'+String(n)+'">'+taskName+'</td>'+
+            '<td>Completed</td>'+
+            '<td></td>'+
+            '<td><button onclick="removeTask('+String(n)+')">Remove Task</button></td>';
+        }
+        function removeTask(n)
+        {
+            const tasklist = document.getElementById('task-list');
+            const taskrow = document.getElementById(n);
+            tasklist.removeChild(taskrow);
+        }
+    </script>
+    <style>
+        body
+        {
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        h1
+        {
+            background-color: lavender;
+            box-shadow: 1px 2px 2px black;
+            padding: 10px;
+        }
+        p
+        {
+            font-weight: bolder;
+            font-size: x-large;
+        }
+        input
+        {
+            padding: 7px;
+            width: 250px;
+            border-radius: 0;
+            border: none;
+            box-shadow: 1px 1px 2px  black;
+        }
+        #addTaskButton
+        {
+            padding: 7px;
+            width: 100px;
+            background-color: rgb(139, 226, 255);
+            border: none;
+            font-weight: bold;
+            box-shadow: 1px 2px 2px black;
+            transition: all ease 0.5s;
+        }
+        #addTaskButton:hover
+        {
+            box-shadow: none;
+        }
+        #task-list
+        {
+            margin: 40px;
+            background-color: azure;
+            padding: 10px;
+            font-weight: bold;
+            text-shadow: 1px 1px 10px rgb(139, 226, 255);
+            box-shadow: 1px 1px 5px 1px black;
+        }
+        #task-list button
+        {
+            padding: 7px;
+            background-color: rgb(139, 226, 255);
+            border: none;
+            font-weight: bold;
+            box-shadow: 1px 2px 2px black;
+            transition: all ease 0.5s;
+        }
+        #task-list button:hover
+        {
+            box-shadow: none;
+        }
+    </style>
+</html>
